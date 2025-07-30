@@ -1,64 +1,94 @@
+# 📝 Cybersecurity Internship Final Project Report
+
+## **Project Title:**  
+**Network Sniffer with Anomaly Detection**
 
 ---
 
-## 📄 `report.md`
-
-```markdown
-# 📑 Week 1 Cybersecurity Internship Report
-
-## 🔐 Project Title:
-**Network Sniffer and Log Analysis**
+## **Objective:**  
+To develop a Python-based network packet sniffer that captures live traffic, logs essential details into an SQLite database, and detects anomalies (like port scans or flooding) in real-time.
 
 ---
 
-## 📌 Objective:
-Build a Python script using **Scapy** to sniff live network packets and log them into an **SQLite3 database**. Verify the captured logs using SQLite CLI.
+## **Tools & Technologies Used:**  
+- **Python 3.13**
+- **Scapy** (for packet sniffing)
+- **SQLite3** (for local database)
+- **VS Code** (development environment)
+- **Windows 11** (operating system)
 
 ---
 
-## 📦 Tools & Technologies:
+## **Project Description:**  
 
-- Python 3.13.2
-- Scapy
-- SQLite3 (v3.50.2 CLI)
-- VS Code
-- Windows 11
+### **Week 1:**  
+- Implemented basic packet sniffer using **Scapy**.  
+- Captured and logged details:
+  - Timestamp  
+  - Source IP & Destination IP  
+  - Source Port & Destination Port  
+  - Packet Length  
+  - TCP Flags  
+- Stored captured data into a local **SQLite3 database** (`packet_logs.db`).  
+- Verified the database using **SQLite CLI**.  
 
----
-
-## 📈 Process:
-
-1. Installed Scapy and SQLite3.
-2. Created `sniffer.py` to capture packets, extract:
-   - Timestamp
-   - Source & Destination IP
-   - Source & Destination Port
-   - Length
-   - TCP Flags
-3. Stored each record into `packet_logs.db`.
-4. Configured Windows Environment Variables for SQLite3.
-5. Verified SQLite installation via CLI.
-6. Queried the database to view captured logs.
+### **Week 2:**  
+- Added **Anomaly Detection** logic:
+  - Tracked number of packets from each source IP within a **10-second window**.  
+  - Triggered alert if packet count exceeded a defined threshold (**10 packets in 10 seconds**).  
+- Created a new **Alerts Table** in the database to log all anomalies.  
+- Displayed real-time alerts in terminal when suspicious activity was detected.  
 
 ---
 
-## 📸 Screenshots:
+## **Database Design:**  
 
-- Sniffer output in terminal.
-- SQLite3 version confirmation.
-- Logs saved and viewed in SQLite3.
+**`packets` table:**  
+| Column      | Type    | Description                  |
+|-------------|---------|------------------------------|
+| timestamp   | TEXT    | Packet capture time          |
+| src_ip      | TEXT    | Source IP address            |
+| dst_ip      | TEXT    | Destination IP address       |
+| sport       | INTEGER | Source port                  |
+| dport       | INTEGER | Destination port             |
+| length      | INTEGER | Packet size in bytes         |
+| flags       | TEXT    | TCP flags                    |
+
+**`alerts` table:**  
+| Column      | Type    | Description                  |
+|-------------|---------|------------------------------|
+| timestamp   | TEXT    | Time of alert                |
+| src_ip      | TEXT    | Source IP that triggered alert|
+| alert       | TEXT    | Alert message                |
 
 ---
 
-## 🎯 Outcome:
+## **Screenshots:**  
+1. Sniffer running and capturing packets  
+2. Database records (packets table)  
+3. Alerts triggered during anomaly detection  
+4. Verified database with SQLite CLI  
 
-Successfully built and tested a functional packet sniffer that captures live traffic and logs essential details into a SQLite database, verified via CLI.
+*(Screenshots are included in the `/screenshots/` folder)*  
 
 ---
 
-## 📚 Learnings:
+## **Learnings:**  
+- Practical experience with **packet-level network monitoring**.  
+- Worked with **Scapy** for capturing and analyzing traffic.  
+- Integrated **SQLite** with Python for persistent storage.  
+- Designed and implemented a basic **anomaly detection** system.  
+- Understood challenges like **database corruption handling** and **environment variable setup**.  
 
-- Live network traffic interception.
-- Database management through Python.
-- Environment variable management on Windows.
-- Practical exposure to CLI-based SQLite.
+---
+
+## **Future Scope:**  
+- Add a **web dashboard** for real-time monitoring.  
+- Export captured logs in **CSV/JSON** for further analysis.  
+- Extend anomaly detection using **ML-based models** for advanced threat detection.  
+
+---
+
+## **Conclusion:**  
+This project helped me understand how packet sniffers work at the network layer, how to analyze traffic, and how to design simple detection mechanisms to enhance network security.  
+
