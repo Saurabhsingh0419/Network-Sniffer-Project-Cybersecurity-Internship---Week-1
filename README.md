@@ -1,32 +1,22 @@
-# 🛡️ Network Sniffer Project | Cybersecurity Internship - Week 1
+# 🕵️‍♂️ Network Sniffer with Anomaly Detection
 
-A lightweight Python-based network sniffer built using **Scapy** that captures TCP/IP packets from the local network interface, extracts essential information, and logs it to an **SQLite3 database**.
-
----
-
-## 📌 Objective
-
-- Capture live network traffic.
-- Extract:
-  - Timestamp
-  - Source IP
-  - Destination IP
-  - Source Port
-  - Destination Port
-  - Packet Length
-  - TCP Flags
-- Store the captured packet details in a local SQLite database.
-- Verify data using SQLite CLI.
+This project is a Python-based **Network Packet Sniffer** that captures, logs, and detects suspicious network activity (like port scans or floods).  
+Packets are stored in an **SQLite database**, and alerts are raised when thresholds are exceeded.
 
 ---
 
-## 📦 Requirements
+## **Features**
+✔️ Capture live network packets using `scapy`  
+✔️ Store packets with details (src/dst IP, ports, flags, length, timestamp) in SQLite  
+✔️ Detect anomalies (Port Scan / Flooding) using thresholds  
+✔️ Store alerts in DB and show in terminal  
 
-- Python 3.13+
-- Scapy
-- SQLite3 (CLI and Python module)
+---
 
-### Install Dependencies
+## **How to Run**
 
-```bash
-pip install scapy
+1. Clone the repository:
+   ```bash
+   git clone <your-repo-url>
+   cd network-sniffer-project
+
